@@ -2,41 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Horizon E-commerce - Mountain Luxury Design System
+All colors are HSL for perfect theming
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Background - Warm sunset tones */
+    --background: 28 25% 95%;
+    --foreground: 20 15% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Cards with glassmorphism effect */
+    --card: 0 0% 100% / 0.8;
+    --card-foreground: 20 15% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100% / 0.95;
+    --popover-foreground: 20 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Mountain sunset gold */
+    --primary: 35 85% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm mountain stone */
+    --secondary: 25 20% 85%;
+    --secondary-foreground: 20 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Soft mountain mist */
+    --muted: 30 15% 90%;
+    --muted-foreground: 25 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Sunset copper */
+    --accent: 15 75% 65%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders - Subtle warm tones */
+    --border: 30 20% 88%;
+    --input: 30 20% 90%;
+    --ring: 35 85% 55%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    /* Custom gradients for mountain luxury theme */
+    --gradient-sunset: linear-gradient(135deg, hsl(35 85% 55%) 0%, hsl(15 75% 65%) 50%, hsl(350 80% 65%) 100%);
+    --gradient-mountain: linear-gradient(180deg, hsl(28 25% 95%) 0%, hsl(30 30% 88%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(0 0% 100% / 0.25) 0%, hsla(0 0% 100% / 0.1) 100%);
+    
+    /* Shadows with warm tones */
+    --shadow-warm: 0 8px 32px hsla(35 85% 55% / 0.15);
+    --shadow-glass: 0 8px 32px hsla(0 0% 0% / 0.1);
+    --shadow-card: 0 4px 24px hsla(35 85% 55% / 0.12);
+
+    /* Animation durations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +122,58 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-mountain);
+    min-height: 100vh;
   }
+}
+
+@layer components {
+  /* Glassmorphism effects */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/20 border border-white/30;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glass-nav {
+    @apply backdrop-blur-md bg-white/10 border-b border-white/20;
+  }
+
+  /* Interactive hover effects */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-warm);
+  }
+
+  /* Gradient backgrounds */
+  .bg-gradient-sunset {
+    background: var(--gradient-sunset);
+  }
+  
+  .bg-gradient-glass {
+    background: var(--gradient-glass);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px hsla(35 85% 55% / 0.3); }
+  to { box-shadow: 0 0 40px hsla(35 85% 55% / 0.6); }
 }
