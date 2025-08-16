@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ShoppingBag, Search, User, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import horizonLogo from '@/assets/horizon-logo.png';
+// Logo Horizon SABG sera utilisé directement
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +21,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <img src={horizonLogo} alt="Horizon" className="h-10 w-10 object-contain" />
+          <img src="/lovable-uploads/8f762cd9-7246-46af-a18d-a0cbda455145.png" alt="Horizon SABG" className="h-12 w-12 object-contain" />
           <h1 className="text-2xl font-bold text-foreground">HORIZON</h1>
         </div>
 
