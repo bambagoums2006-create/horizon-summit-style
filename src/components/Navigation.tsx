@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingBag, Search, User, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-// Logo Horizon SABG sera utilisé directement
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +14,7 @@ const Navigation = () => {
     { name: 'Apple', href: '#apple' },
     { name: 'Électroménager', href: '#electromenager' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Dashboard', href: '/dashboard', isRoute: true },
   ];
 
   return (
@@ -27,15 +28,25 @@ const Navigation = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
-            >
-              {item.name}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.isRoute ? (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+              >
+                {item.name}
+              </a>
+            )
+          )}
         </div>
 
         {/* Search Bar */}
@@ -75,16 +86,27 @@ const Navigation = () => {
       {isMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 glass-card mx-4 mt-2 rounded-xl p-6">
           <div className="flex flex-col space-y-4">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.isRoute ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              )
+            )}
             <div className="flex items-center bg-white/20 rounded-xl px-4 py-2 mt-4">
               <Input
                 placeholder="Rechercher..."
